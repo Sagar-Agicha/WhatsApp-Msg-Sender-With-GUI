@@ -3,18 +3,15 @@ from tkinter import *
 from tkinter import messagebox
 import openpyxl as xl;
 from tkinter import filedialog
-import pywhatkit
 from openpyxl.workbook import Workbook
 from openpyxl import load_workbook
 import time
 import pyautogui
-from pynput.keyboard import Key,Controller
+from pynput.keyboard import Controller
 import webbrowser as web
-from datetime import datetime
-from typing import Optional
 from urllib.parse import quote
 import pyautogui as pg
-from pywhatkit.core import core, exceptions, log
+from pywhatkit.core import core, exceptions
 
 master=Tk()
 
@@ -51,7 +48,7 @@ file_l.place(relx=0.5,y=190,anchor=CENTER)
 
 file_btn = Button(master,text="Open",command=opennew,width=30)
 file_btn.grid(row=3)
-file_btn.place(relx=0.5,y=220,anchor=CENTER)
+file_btn.place(relx=0.5,y=230,anchor=CENTER)
 
 #Text (Start & End)
 def print_input():
@@ -108,11 +105,11 @@ def main_f():
         msg = "Dear Customer, your EMI to Bazaari Global Finance of Rs " + ms + " is due on " + date_t.get() + " and you are requested to maintain adequate balance on " + date_t.get() + " onwards. For any clarification you may reach us on 91-8452816111"
         print(phone , " " , end)
         print(msg) 
-        #pywhatkit.sendwhatmsg_instantly(phone, msg)
         sendwhatmsg_instantly(phone, msg)
         time.sleep(2)
         close_tab()
         start = start+1
+    close_tab()    
     last_msg()
 
 final_btn = Button(master,text="BEGIN",command=main_f,width=30)
@@ -157,6 +154,8 @@ def sendwhatmsg_instantly(
     if tab_close:
         core.close_tab(wait_time=close_time)
 
+master.iconbitmap("pic.ico")
 master.title("Whatsapp Msg Sender")
 master.geometry("700x500")
+master.configure(bg='Yellow')
 master.mainloop()
